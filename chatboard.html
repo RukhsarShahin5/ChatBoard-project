@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatboard</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #704a8a;
+}
+
+.chat-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat-box {
+    padding: 10px;
+    overflow-y: auto;
+    height: calc(100% - 50px);
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-message {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+}
+
+.chat-input {
+    border: none;
+    padding: 10px;
+    width: calc(100% - 60px);
+    outline: none;
+}
+
+.send-btn {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    width: 50px;
+}
+
+.send-btn:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<body>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box"></div>
+        <input type="text" id="chat-input" class="chat-input" placeholder="Type a message...">
+        <button id="send-btn" class="send-btn">Send</button>
+    </div>
+
+    <script>
+document.getElementById("send-btn").addEventListener("click", function() {
+    let input = document.getElementById("chat-input");
+    let message = input.value.trim();
+
+    if (message) {
+        let chatBox = document.getElementById("chat-box");
+
+
+        let messageBubble = document.createElement("div");
+        messageBubble.classList.add("chat-message");
+        messageBubble.textContent = message;
+
+
+        chatBox.appendChild(messageBubble);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    
+        input.value = "";
+    }
+});
+
+
+document.getElementById("chat-input").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        document.getElementById("send-btn").click();
+    }
+});
+
+    </script>
+</body>
+</html>
